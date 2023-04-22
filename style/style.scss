@@ -1,0 +1,980 @@
+// set the global rouls in wesite
+@use './global-rouls' as * ;
+// add some mixin to help you in development
+@use './mixins' as * ;
+
+// import website fonts (Krub & Rubik);
+@import url('https://fonts.googleapis.com/css2?family=Krub:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+body{
+  font-family: 'Krub', sans-serif;
+}
+// start variables
+$main-color: #ffbe34;
+$scound-color: #091242;
+$gradient-color: linear-gradient(to top, $main-color 10%,#ffffff30 90%);
+$thrid-color: #f4f4f4;
+$font-color-one: #666c89;
+$font-color-two: #1c1f35;
+$transition: all 0.3s ease;
+// end variables
+
+main{
+  .scroll-to-top{
+    @include same-w-h(50px);
+    border-radius: 10px;
+    @include center;
+    background-color: $main-color;
+    color: $scound-color;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    position: fixed;
+    bottom: 5%;
+    right: 3%;
+    display: none;
+    z-index: 99999;
+    animation: up-and-down 0.5s infinite linear;
+  }
+  .info{
+    background-color: $font-color-two;
+    color: #fff;
+    height: fit-content;
+    .container{
+      @include space-around-center;
+      flex-wrap: wrap;
+      .contact-info{
+        display: flex;
+        flex-wrap: wrap;
+        .email ,.phone,.time-table{
+          @include center;
+          span{
+            color: $main-color;
+            margin: 10px;
+            @include same-w-h(40px);
+            @include center;
+            border-radius: 50%;
+            background-color: $scound-color;
+          }
+          p{
+            a{
+              color: $thrid-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  .home{
+    height: fit-content;
+    background-image: url(../images/backgrounds/img-1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+      header{
+        background-color: #666c894f;
+        height: 80px;
+        @include space-around-center;
+        .container{
+          height: fit-content;
+          @include space-around-center;
+          .bar{ 
+            cursor: pointer;
+            span{
+              color: $thrid-color;
+              font-size: 22px;
+            }
+            }
+          nav{
+            @include center;
+            ul{
+              width: 100%;
+              li{
+                display: inline-block;
+                margin: 10px;
+                a{
+                  color: $thrid-color;
+                  transition: $transition;
+                  &:hover{
+                    color: $main-color;
+                  }
+                }
+              }
+              li div{
+                display: none;
+              }
+            }
+          }
+          .socail-media{
+            span{
+              margin: 10px;
+              font-size: 20px;
+              a{
+                color: $thrid-color;
+                transition: $transition;
+                &:hover{
+                  color: $main-color;
+                }
+              }
+            }
+          }
+          button{
+            @include button($thrid-color,$main-color)
+          }
+        }
+      }
+      @media (min-width: 768px){
+          .container{
+              nav{
+                position: relative;
+                .bar{
+                  display: none;
+                  span{
+                    font-size: 22px;
+                  }
+                }
+                }
+          }
+      }
+      @media (max-width: 768px){
+          .container{
+            width: 100%;
+            @include space-around-center;
+            nav{
+              position: relative;
+              width: 100%;
+              .bar:hover + ul{
+                display: flex;
+                position: absolute;
+                top: 200%;
+                flex-direction: column;
+                width: 100vw;
+                z-index: 9999;
+                background-color: $scound-color;
+                justify-content: center;
+                align-items: center;
+                li:not(:last-child){
+                  text-align: center;
+                  padding: 2%;
+                  width: 100%;
+                  border-bottom: 1px solid $main-color;
+                }
+              }
+            }
+            .socail-media{
+              display: none;
+            }
+          }
+      }
+      @media (max-width: 600px){
+          .container{
+            width: 100%;
+            @include space-around-center;
+            nav{
+              position: relative;
+              ul{
+                  display: none;
+                }
+            }
+          }
+      }
+      .container{
+        .text{
+          max-width: 550px;
+          color: $thrid-color;
+          margin: 10% 0;
+          padding: 5%;
+          .title{
+            @include title;
+          }
+          h1{
+            font-size: 40px;
+          }
+          p{
+            line-height: 1.9;
+          }
+          button{
+            margin: 5% 0;
+            @include button($thrid-color,$main-color)
+          }
+        }
+      }
+    }
+  .services{
+      margin-top: 10%;
+      .container{
+        @include space-around-center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        .head{
+          max-width: 300px;
+          .title{
+            @include title;
+          }
+        }
+        .contain-services{
+          max-width: 50rem;
+          margin-bottom: 14rem;
+        @include space-around-center;
+        flex-wrap: wrap;
+        .ship,.fly,.local-shipping,.Ware-housing{
+          margin: 10px;
+          max-width: 300px;
+          @include center;
+          align-items: flex-start;
+          .icon{
+            margin-right: 20px;
+            span{
+              font-size: 40px;
+              color: $main-color;
+            }
+          }
+          h2{
+            font-size: 22px;
+            font-weight: 300;
+          }
+          p{
+            font-size: 12px;
+            line-height: 1.9;
+          }
+        }
+      }
+    }
+  }
+  .why-us{
+    margin-top: 14%;
+    position: relative;
+    &::before{
+      content: '';
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      height: clamp(10rem,20rem,30rem);
+      background-image: url(../images/backgrounds/img-2.jpg);
+      background-size: cover; 
+      background-repeat: no-repeat;
+      position: absolute;
+      top: -25%;
+      left: 0;
+      z-index: -1;
+    }
+    @include center;
+    .container{
+      @include center;
+      flex-wrap: wrap;
+      width: 100%;
+      .content{
+        padding: 20px;
+        max-width: 80%;
+        margin-top: 3%;
+        background-color: #fff;
+        @include space-around-center;
+        flex-wrap: wrap;
+        .text{
+          @include center;
+          max-width: 18rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+          margin: 10px;
+          .title{
+            @include title;
+          }
+          p:not(.title){
+            font-size: 12px;
+            line-height: 1.7;
+          }
+            .delivery,.optimized{
+              @include center;
+              span{
+                @include same-w-h(50px);
+                @include center;
+                background-color: $main-color;
+                border-radius: 50%;
+                font-size: 25px;
+                margin: 10px;
+              }
+            }
+        }
+        .img{
+          width: clamp(10rem,25rem,30rem);
+          height: clamp(200px,400px,500px);
+          background-image: url(../images/website-img/img-1.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          position: relative;
+          img{
+            max-width: 200px;
+            border: 10px solid #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0%;
+          }
+        }
+      }
+    }
+  }
+  .features{
+    margin: 10% 0;
+    font-family:  'Rubik', sans-serif;;
+    .container{
+      @include center;
+      flex-direction: column;
+      flex-wrap: wrap;
+      .head{
+        h1{
+          color: $scound-color;
+        }
+      }
+      .content{
+        margin: 5% 0;
+        @include space-around-center;
+        flex-wrap: wrap;
+        .feature{
+          width: 16rem;
+          height: 20rem;
+          background-image: url(../images/website-img/img-3.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          transition: $transition;
+          overflow: hidden;
+          margin: 10px;
+          &:hover .text{
+            transform: translateY(0);
+          }
+          .text{
+            transform: translateY(100%);
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to top, $scound-color 0%,#ffffff0a 90%);
+            color: $thrid-color;
+            transition: $transition;
+            position: relative;
+            cursor: pointer;
+            h3{
+              position: absolute;
+              bottom: 15%;
+              left: 5%;
+            }
+            p{
+              position: absolute;
+              bottom: 8%;
+              left: 5%;
+              color: $main-color;
+            }
+          }
+        }
+        .two{
+          background-image: url(../images/website-img/img-4.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        .three{
+          background-image: url(../images/website-img/img-5.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        .four{
+          background-image: url(../images/website-img/img-6.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+      button{
+        @include button(#fff,$scound-color) 
+      }
+    }
+  }
+  .customers{
+    .container{
+      .head{
+        @include space-around-center;
+        flex-wrap: wrap;
+        .text{
+          @include center;
+          flex-direction: column;
+          gap: 20px;
+          align-items: flex-start;
+          h2{
+            margin-bottom: 10%;
+          }
+          .title{
+            @include title;
+          }
+        }
+        .buttons{
+          @include center;
+          button{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: $main-color;
+            @include center;
+            margin: 10px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            &:hover{
+              transition: $transition;
+              color: $main-color;
+              background-color: $scound-color;
+            }
+            span{
+              color: $scound-color;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      .content{
+        @include center;
+        flex-wrap: wrap;
+        .customer-one , .customer-two {
+          width: fit-content;
+          height: fit-content;
+          padding: 20px;
+          @include center;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          flex-wrap: wrap;
+          .head{
+            .text{
+              h3{
+                margin-bottom: 5px;
+              }
+              p{
+                font-size: 15px;
+              }
+            }
+            .img{
+              img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 10px;
+              }
+            }
+          }
+          p{
+            max-width: 400px;
+            margin: 10px;
+            font-size: 13px;
+            line-height: 1.9;
+          }
+          .stars{
+            @include center;
+            span{
+              font-size: 20px;
+              color: $main-color;
+            }
+          }
+        }
+        .customer-one{
+          background-color: $thrid-color;
+        }
+        .customer-two{
+          background-color: $scound-color;
+          color: $thrid-color;
+        }
+      }
+    }
+  }
+  .why-choose{
+    height: fit-content;
+    padding: 20px;
+    position: relative;
+    margin: 12% 0;
+    &::before{
+      content: '';
+      width: 50%;
+      height: 100%;
+      background-color: $scound-color;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    &::after{
+      content: '';
+      width: 50%;
+      height: 100%;
+      background-color: $thrid-color;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+    }
+    .container{
+      .content{
+        @include center;
+        flex-wrap: wrap;
+        .img{
+          width: clamp(20rem,30rem,40rem);
+          height: 400px;
+          background-image: url(../images/website-img/img-9.jpg);
+          background-size: cover; 
+          background-repeat: no-repeat;
+        }
+        .text{
+          align-items: flex-start;
+          margin-left: 5%;
+          margin: 5%;
+          .head{
+            @include center;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 400px;
+            .title{
+              @include title;
+            }
+          }
+          .options{
+            max-width: 25rem;
+            @include space-around-center;
+            flex-wrap: wrap;
+            .part-1,.part-2{
+              @include center;
+              flex-direction: column;
+              align-items: flex-start;
+            }
+            div{
+              display: flex;
+              align-items: center;
+              margin: 10px;
+              span{
+                @include same-w-h(40px);
+                @include center;
+                border-radius: 50%;
+                background-color: $main-color;
+                color: $scound-color;
+              }
+              p{
+                color: $scound-color;
+                font-weight: 400;
+                margin-left: 5%;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .team{
+    margin: 10% 0;
+    .container{
+      .head{
+        @include center;
+        flex-direction: column;
+        .title{
+          @include title;
+        }
+        h2{
+          color: $scound-color;
+          margin: 10px;
+        }
+      }
+      .content{
+        margin: 5% 0;
+        @include space-around-center;
+        flex-wrap: wrap;
+        .member{
+          width: 300px;
+          height: 400px;
+          background-image: url(../images/website-img/img-10.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          overflow: hidden;
+          margin: 10px;
+          filter: grayscale(100%);
+          &:hover{
+            filter: grayscale(0%);
+          }
+          &:hover .text{
+            transform: translateY(235%);
+          }
+          .text{
+            transform: translateY(500%);
+            width: 100%;
+            height: 30%;
+            background-color: $scound-color;
+            color: $thrid-color;
+            transition: $transition;
+            position: relative;
+            cursor: pointer;
+            h3{
+              position: absolute;
+              bottom: 30%;
+              left: 5%;
+            }
+            p{
+              position: absolute;
+              bottom: 15%;
+              left: 5%;
+              font-size: 15px;
+              color: $main-color;
+            }
+            .socail-media{
+              position: absolute;
+              top: -15%;
+              right: 0;
+              background-color: $main-color;
+              width: fit-content;
+              padding: 10px;
+              span{
+                margin: 10px;
+                font-size: 20px;
+                a{
+                  color: $thrid-color;
+                  transition: $transition;
+                  &:hover{
+                    color: $scound-color;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .two{
+          background-image: url(../images/website-img/img-11.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        .three{
+          background-image: url(../images/website-img/img-12.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+  .contact{
+    background-color: $scound-color;
+    .container{
+      .content{
+        @include space-around-center;
+        flex-wrap: wrap;
+        .text{
+          max-width: 20rem;
+          @include center;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px;
+          color: $thrid-color;
+          .title{
+            @include title;
+          }
+          .pargraph{
+            font-size: 12px;
+            line-height: 1.8;
+          }
+          .contact-info{
+            display: flex;
+            color: $thrid-color;
+            flex-wrap: wrap;
+            .email ,.phone,.time-table{
+              @include center;
+              span{
+                color: $main-color;
+                margin: 10px;
+                @include same-w-h(40px);
+                @include center;
+                border-radius: 50%;
+                background-color: $scound-color;
+              }
+              p{
+                a{
+                  color: $thrid-color;
+                }
+              }
+            }
+          }
+        }
+        .form{
+          display: flex;
+          max-width: 500px;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          flex-direction: row;
+          margin-bottom: 5%;
+          form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            input,textarea{
+              width: 210px;
+              height: 30px;
+              padding: 10px;
+              margin: 10px;
+              outline: none;
+              border: 1px solid $thrid-color;
+              color: $font-color-one;
+              background-color: transparent;
+              border-radius: 2px;
+            }
+            input::placeholder{
+              color: #fff;
+            }
+            button{
+              @include button($main-color,$thrid-color);
+              width: 150px;
+              grid-area: button;
+            }
+            textarea{
+              max-width: clamp(5rem,20rem,30rem);
+              height: clamp(5rem,10rem,30rem);
+            }
+          }
+        }
+      }
+    }
+
+  }
+  .blogs{
+    margin: 10% 0;
+    .container{
+      @include center;
+      flex-direction: column;
+      .head{
+        flex-direction: column;
+        @include center;
+        h2{
+          margin: 10px;
+          color: $scound-color;
+        }
+        .title{
+          @include title;
+        }
+      }
+      .content{
+        width: 100%;
+        @include center;
+        flex-wrap: wrap;
+        .blog{
+          margin: 3% 0;
+          width: 70%;
+          @include space-around-center;
+          flex-wrap: wrap;
+          gap: 10px;
+          .img{
+            width: 300px;
+            height: 300px;
+            background-image: url(../images/website-img/img-4.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+          .date{
+            @include center;
+            flex-direction: column;
+            span{
+              font-size: 40px;
+            }
+          }
+          .text{
+            max-width: 300px;
+            @include center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 20px;
+            h3{
+              font-weight: 300;
+            }
+            p{
+              font-size: 13px;
+              line-height: 1.7;
+            }
+            ul{
+              list-style: disc;
+              li{
+                margin: 10px;
+              }
+            }
+          }
+        }
+        .two{
+          .img{
+            background-image: url(../images/website-img/img-5.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        }
+        .three{
+          .img{
+            background-image: url(../images/website-img/img-6.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        }
+        .four{
+          .img{
+            background-image: url(../images/website-img/img-9.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        }
+      }
+      button{
+        @include button($thrid-color,$scound-color)
+      }
+    }
+  }
+  footer{
+    background-color: $scound-color;
+    color: $thrid-color;
+    padding: 5%;
+    margin-top: 10%;
+    .container{
+      .content{
+        @include space-around-center;
+        flex-wrap: wrap;
+        gap: 10px;
+        .text{
+          max-width: 300px;
+          @include center;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          p{
+            font-size: 12px;
+            line-height: 1.8;
+          }
+          .phone{
+            @include center;
+            span{
+              color: $main-color;
+              margin: 10px;
+              @include same-w-h(40px);
+              @include center;
+              border-radius: 50%;
+              background-color: $scound-color;
+            }
+          }
+        }
+        .about,.utility,.subscribe{
+          @include center;
+          flex-direction: column;
+          gap: 10px;
+          ul{
+            li{
+              margin: 10px;
+              a{
+                color: $thrid-color;
+                transition: $transition;
+                &:hover{
+                  color: $main-color;
+                }
+              }
+            }
+          }
+        }
+        .subscribe{
+          input{
+            width: 210px;
+            height: 30px;
+            padding: 20px;
+            background-color: transparent;
+            color: $thrid-color;
+            border: 1px solid $font-color-one;
+          }
+          .share{
+            @include center;
+            button{
+              @include button($thrid-color,$main-color);
+              margin-right: 10px;
+            }
+            .socail-media{
+              span{
+                margin: 5px;
+                font-size: 18px;
+                a{
+                  color: $thrid-color;
+                  transition: $transition;
+                  &:hover{
+                    color: $main-color;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      hr{
+        margin: 5% 0;
+      }
+      .copy-right{
+        @include space-around-center;
+        flex-wrap: wrap;
+        ul{
+          li{
+            display: inline-block;
+            margin: 10px;
+            a{
+              color: $thrid-color;
+              transition: $transition;
+              &:hover{
+                color: $main-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 228px) and (max-width: 800px) {
+  .why-choose{
+    &::before{
+    display: none;
+    }
+    &::after{
+      display: none;
+    }
+    .container{
+      .content{
+        .img{
+          display: none;
+        }
+        .text{
+          .options{
+            max-width: 5rem;
+            @include center;
+            flex-wrap: wrap;
+            .part-1,.part-2{
+              @include center;
+              flex-direction: column;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+// start animation
+@keyframes up-and-down {
+  0%,100%{
+    transform: translateY(0);
+  }
+  25%,50%,75%{
+    transform: translateY(10px);
+  }
+}
+// end animation
+
+// start scroll bar
+body::-webkit-scrollbar{
+  width: 20px;
+}
+body::-webkit-scrollbar-track{
+  background-color: #f6f6f6;
+}
+body::-webkit-scrollbar-thumb{
+  background-color: $scound-color;
+  border-radius: 10px;
+}
+// this is class to show links in a small screen
+
+// end scroll bar
